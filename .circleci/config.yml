@@ -26,7 +26,7 @@ jobs:
           command: |
             echo "This is an integration step"
             exit 0
-            allow_failure: True  
+          allow_failure: True  
   prod:
     docker:
       - image: python:3.6
