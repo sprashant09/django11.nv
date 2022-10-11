@@ -23,19 +23,24 @@ jobs:
           pip install -r requirements.txt
           python manage.py check
 
-  oast:
+  test:
     runs-on: ubuntu-latest
-    needs: test
+    needs: build
     steps:
       - uses: actions/checkout@v2
 
-      - run: docker run --rm -v /django.nv:/src hysnsec/safety check -r requirements.txt --json | tee oast-results.json
-
-      - uses: actions/upload-artifact@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
         with:
-          name: Safety
-          path: oast-results.json
-        if: always()                        # what is this for?
+          python-version: '3.6'
+
+      - run: |
+          pip3 install --upgrade virtualenv
+          virtualenv env
+          source env/bin/activate
+          pip install -r requirements.txt
+          python manage.py test taskManager
+
   integration:
     runs-on: ubuntu-latest
     needs: test
