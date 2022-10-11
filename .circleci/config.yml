@@ -26,8 +26,6 @@ jobs:
           command: |
             echo "This is an integration step"
             exit 0
-                             # Even if the job fails, continue to the next stages
-
   prod:
     docker:
       - image: python:3.6
