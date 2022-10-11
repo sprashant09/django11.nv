@@ -27,12 +27,7 @@ jobs:
             echo "This is an integration step"
             exit 2
            
-  prod:
-    docker:
-      - image: python:3.6
-    steps:
-      - checkout
-      - run: echo "This is a deploy step."
+  
 workflows:
   version: 2
   django:
@@ -44,7 +39,4 @@ workflows:
       - integration:
           requires:
             - test
-      - prod:
-          type: approval
-          requires:
-            - integration
+      
