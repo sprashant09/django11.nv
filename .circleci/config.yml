@@ -26,7 +26,7 @@ jobs:
           command: |
             echo "This is an integration step"
             exit 0
-          when: on_fail      # Even if the job fails, continue to the next jobs
+                # Even if the job fails, continue to the next jobs
 
   prod:
     docker:
